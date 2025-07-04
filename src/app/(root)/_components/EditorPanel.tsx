@@ -20,6 +20,7 @@ function EditorPanel() {
   } , [])
 
   useEffect(() => {
+    localStorage.setItem(`run-code-${language}` , "false") ;
     const savedCode = localStorage.getItem(`editor-code-${language}`);
     const newCode = savedCode || LANGUAGE_CONFIG[language].defaultCode;
     if (editor) editor.setValue(newCode);
@@ -30,14 +31,9 @@ function EditorPanel() {
     if (savedFontSize) setFontSize(parseInt(savedFontSize));
   }, [setFontSize]);
 
-  const handleRefresh = () => {
-    const defaultCode = LANGUAGE_CONFIG[language].defaultCode;
-    if (editor) editor.setValue(defaultCode);
-    localStorage.removeItem(`editor-code-${language}`);
-  };
-
   const handleEditorChange = (value: string | undefined) => {
     if (value) localStorage.setItem(`editor-code-${language}`, value);
+    localStorage.setItem(`run-code-${language}` , "false") ;
   };
 
   const handleFontSizeChange = (newSize: number) => {
@@ -83,7 +79,7 @@ function EditorPanel() {
               </div>
             </div>
 
-            <motion.button
+            {/* <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleRefresh}
@@ -91,7 +87,7 @@ function EditorPanel() {
               aria-label="Reset to default code"
             >
               <RotateCcwIcon className="size-4 text-gray-400" />
-            </motion.button>
+            </motion.button> */}
 
             {/* Share Button */}
             <motion.button

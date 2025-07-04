@@ -17,7 +17,7 @@ function RunButton() {
     const result = getExecutionResult();
 
     if (user && result) {
-        
+      localStorage.setItem(`run-code-${language}` , "true") ;
       await saveExecution({
         language,
         code: result.code,
