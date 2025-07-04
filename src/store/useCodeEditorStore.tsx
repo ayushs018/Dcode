@@ -74,6 +74,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
       runCode: async () => {
         const { language, getCode } = get();
         const code = getCode();
+        const input = localStorage.getItem("input") ; 
   
         if (!code) {
           set({ error: "Please enter some code" });
@@ -93,6 +94,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
               language: runtime.language,
               version: runtime.version,
               files: [{ content: code }],
+              stdin: input , 
             }),
           });
   

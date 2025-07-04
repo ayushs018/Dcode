@@ -42,6 +42,7 @@ export interface CodeEditorState {
   output: string;
   isRunning: boolean;
   error: string | null;
+  userInput: string | null ;
   theme: string;
   fontSize: number;
   editor: Monaco | null;
